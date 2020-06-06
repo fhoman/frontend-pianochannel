@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AdminService from '../services/admin-service'
+import AdminService from '../../services/admin-service'
 
 export default class Admin extends Component {
 

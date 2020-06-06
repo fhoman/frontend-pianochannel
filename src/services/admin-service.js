@@ -2,7 +2,8 @@ import axios from 'axios'
 
 
 const URL = axios.create({
-    baseURL: 'http://localhost:5000/api/admin',
+
+    baseURL: `${process.env.REACT_APP_API_URL}/admin` ,
   })
 
   const AdminService = {

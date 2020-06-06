@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import AuthService from '../services/auth-service'
-import { Link, Redirect } from 'react-router-dom';
+import AuthService from '../../services/auth-service'
+import { Link } from 'react-router-dom';
 
 export default class Login extends Component {
 
@@ -19,6 +19,7 @@ export default class Login extends Component {
         this.state.service.login(username, password)
         .then( response => {
             this.setState({ username: "", password: "",formSubmit:true });
+            console.log(response)
             this.props.setUser(response);          
         })
         .catch( error => console.log(error) )
@@ -31,14 +32,7 @@ export default class Login extends Component {
 
   render() {
 
-    if (this.state.formSubmit) {
-
-    return <Redirect to='/profile'></Redirect>
-
-    } 
-
-
-    return (
+        return (
       <div>
         <form onSubmit={this.handleFormSubmit}>
         <div className="form-group">

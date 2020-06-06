@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import UserService from '../services/user-service'
+import UserService from '../../services/user-service'
 // import { Link } from 'react-router-dom';
 
 export default class Profile extends Component {

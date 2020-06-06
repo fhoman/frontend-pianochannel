@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import AdminService from '../services/admin-service'
+import AdminService from '../../services/admin-service'
 import { Link } from 'react-router-dom';
 
 export default class Videos extends Component {

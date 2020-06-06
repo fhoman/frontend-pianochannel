@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PianoApi from '../services/admin-service'
+import PianoApi from '../../services/admin-service'
 
 export default class Students extends Component {
 
