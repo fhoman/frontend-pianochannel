@@ -119,7 +119,9 @@ loading:false})
           <div className="section profile-heading">
           <div className="columns is-mobile is-multiline">
           <div className="column is-2">
-          <span className="header-icon user-profile-image">
+          <span className="student-profile-big">
+
+
           <img alt={this.state.name} src={this.state.image}></img>
           </span>
           </div>
@@ -159,7 +161,7 @@ return (
 <div className="card-content">
 <div className="content">
   <p>{video.snippet.publishedAt}</p>
-<span className="tag is-dark subtitle">{video.snippet.title}</span>
+  <p className="title is-5">{video.snippet.title}</p>
 <p>{video.snippet.description}</p>
 </div>
 </div>

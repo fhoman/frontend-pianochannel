@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+import {NavLink } from 'react-router-dom';
 import AuthService from '../../services/auth-service'
 
 export default class Subnavstudent extends Component {
@@ -34,15 +34,45 @@ componentDidMount() {
 
 
         return (
-            <div className='subnav'>
-            <ul>
-           
-         <li>    <Link to={`/myprofile/${this.state.username}`}>Profile</Link></li>  
-            <li>    <Link to='/login' onClick={() => this.logoutUser()}>Logout</Link></li> 
- 
-          </ul> 
- 
-         </div>
+
+
+
+
+<div className="profile-options is-fullwidth">
+<div className="tabs is-fullwidth is-medium">
+<ul>
+
+<li className="link" >
+<NavLink to={`/myprofile/${this.state.username}`} activeClassName="is-active">
+<span className="icon">
+<i className="fa fa-thumbs-up"></i>
+</span>
+<span>Profile</span>
+</NavLink>
+</li>
+
+<li className="link">
+<NavLink to='/login' onClick={() => this.logoutUser()} activeClassName="is-active">
+<span className="icon">
+<i className="fa fa-balance-scale"></i>
+</span>
+<span>Logout</span>
+</NavLink>
+</li>
+</ul>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
         )
     }
 }

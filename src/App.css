@@ -109,3 +109,18 @@ height: 50px;
 border-radius: 180px;
 
 }
+
+
+.student-profile-big img {
+
+  width: 125px;
+  height: 125px;
+  border-radius: 180px;
+  
+  }
+
+  .columns.is-multiline {
+
+background-color: white;
+
+  }

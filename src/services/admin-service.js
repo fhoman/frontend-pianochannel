@@ -33,7 +33,7 @@ const URL = axios.create({
       return URL.post('/untagvideo',data)
     },    
     mailNewUser: (email) => {
-      return URL.post('/mail-user',email)
+      return URL.post('/mail-user',{email:email})
     }
 
   }
