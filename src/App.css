@@ -124,3 +124,39 @@ border-radius: 180px;
 background-color: white;
 
   }
+
+
+.form-container {
+
+margin: 100px 100px 100px 100px;
+display: flex;
+align-items: center;
+justify-content: center;
+
+}
+
+.signup-form {
+
+padding: 50px;
+
+}
+
+table {
+
+margin: 50px 300px 0px 110px;
+width: 80%;
+
+}
+
+
+
+
+
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}

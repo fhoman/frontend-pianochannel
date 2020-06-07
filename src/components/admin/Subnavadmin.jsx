@@ -30,7 +30,7 @@ export default class Subnavstudent extends Component {
 <ul>
 
 <li className="link" >
-<NavLink to='/students' activeClassName="is-active">
+<NavLink to='/students' activeStyle={{color:"red"}}>
 <span className="icon">
 <i className="fa fa-thumbs-up"></i>
 </span>
@@ -38,7 +38,7 @@ export default class Subnavstudent extends Component {
 </NavLink>
 </li>
 <li className="link">
-<NavLink to='/videos' activeClassName="is-active">
+<NavLink to='/videos' activeStyle={{color:"red"}}>
 <span className="icon">
 <i className="fa fa-search"></i>
 </span>
@@ -46,7 +46,7 @@ export default class Subnavstudent extends Component {
 </NavLink>
 </li>
 <li className="link">
-<NavLink to='/login' onClick={() => this.logoutUser()} activeClassName="is-active">
+<NavLink to='/login' onClick={() => this.logoutUser()} activeStyle={{color:"red"}}>
 <span className="icon">
 <i className="fa fa-balance-scale"></i>
 </span>

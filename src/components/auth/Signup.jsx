@@ -5,19 +5,17 @@ export default class Signup extends Component {
 
     state = {
             username: '',
-            password: '',
-            name:'',
-            surname:'',
-            number:0,
+            password: '',          
             service: new AuthService(),
             submitted: false
     }
 
      handleSubmit = (e) => {
         e.preventDefault();
-        this.state.service.signup(this.state.username, this.state.password,this.state.name,this.state.surname,this.state.number)
+        console.log(this.state)
+        this.state.service.signup(this.state.username, this.state.password)
         .then(user => {
-          this.setState({submitted: true})
+          this.setState({submitted: true,username:'',password:''})
         })
     }
 
@@ -32,51 +30,43 @@ export default class Signup extends Component {
         return <Redirect to='/login' />
       }
         return (
-          <div>
-            <div className="signup-container">
-              <form
-                className="signup-form"
-                onSubmit={(e) => this.handleSubmit(e)}
-              >
-                <label htmlFor="name">Username</label>
-                <input required
-                  type="text"
-                  name="username"
-                  value={this.state.username}
-                  onChange={(e) => this.handleInput(e)}
-                />
-                <label htmlFor="name">Name</label>
-                <input required
-                  type="text"
-                  name="name"
-                  value={this.state.name}
-                  onChange={(e) => this.handleInput(e)}
-                />
-                <label htmlFor="name">Surname</label>
-                <input required
-                  type="text"
-                  name="surname"
-                  value={this.state.surname}
-                  onChange={(e) => this.handleInput(e)}
-                />
-                <input required
-                  type="number"
-                  name="number"
-                  value={this.state.number}
-                  onChange={(e) => this.handleInput(e)}
-                />
+<div className='form-container'>
 
-                <label htmlFor="tagline">Password</label>
-                <input required
-                  type="password"
-                  name="password"
+<form className="signup-form" onSubmit={(e) => this.handleSubmit(e)}>
+<div className="field">
+  <p className="control has-icons-left has-icons-right">
+    <input className="input" type="email"  name="username"
+                  value={this.state.username}
+                  onChange={(e) => this.handleInput(e)} placeholder="Email"></input>
+    <span className="icon is-small is-left">
+      <i className="fas fa-envelope"></i>
+    </span>
+    <span className="icon is-small is-right">
+      <i className="fas fa-check"></i>
+    </span>
+  </p>
+</div>
+<div className="field">
+  <p className="control has-icons-left">
+    <input className="input" type="password" placeholder="Password"  name="password"
                   value={this.state.password}
-                  onChange={(e) => this.handleInput(e)}
-                />
-                
-                <button className="signup-button" type="submit">Signup!</button>
-              </form>
-            </div>
+                  onChange={(e) => this.handleInput(e)}></input>
+    <span className="icon is-small is-left">
+      <i className="fas fa-lock"></i>
+    </span>
+  </p>
+</div>
+<div className="field">
+  <p className="control">
+    <button className="button is-success" type="submit">
+      Signup
+    </button>
+  </p>
+</div>
+</form>
+
+
+
           </div>
         );
     }

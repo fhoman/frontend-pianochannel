@@ -12,6 +12,9 @@ const URL = axios.create({
     },
     FetchProfileStudent: (user) => {
       return URL.post('/profile-student',user)
+    },
+    UpdateProfileStudent: (user) => {
+      return URL.post('/update-profile-student',user)
     }
 
   }

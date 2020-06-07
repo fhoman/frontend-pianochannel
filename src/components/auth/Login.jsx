@@ -12,7 +12,7 @@ export default class Login extends Component {
         formSubmit: false
     }
 
-    handleFormSubmit = (event) => {
+    handleSubmit = (event) => {
         event.preventDefault();
         const username = this.state.username;
         const password = this.state.password;
@@ -25,7 +25,7 @@ export default class Login extends Component {
         .catch( error => console.log(error) )
       }
     
-      handleChange = (event) => {  
+      handleInput = (event) => {  
         const {name, value} = event.target;
         this.setState({[name]: value});
       }
@@ -33,22 +33,58 @@ export default class Login extends Component {
   render() {
 
         return (
-      <div>
-        <form onSubmit={this.handleFormSubmit}>
-        <div className="form-group">
-          <label>Username:</label>
-          <input type="text" name="username" className="form-control" value={this.state.username} onChange={ e => this.handleChange(e)}/>
+          <>
+          <div className='form-container'>
+
+          <form className="signup-form" onSubmit={(e) => this.handleSubmit(e)}>
+          <div className="field">
+            <p className="control has-icons-left has-icons-right">
+              <input className="input" type="email"  name="username"
+                            value={this.state.username}
+                            onChange={(e) => this.handleInput(e)} placeholder="Email"></input>
+              <span className="icon is-small is-left">
+                <i className="fas fa-envelope"></i>
+              </span>
+              <span className="icon is-small is-right">
+                <i className="fas fa-check"></i>
+              </span>
+            </p>
           </div>
-          <div className="form-group">
-          <label>Password:</label>
-          <input name="password"  type="password" className="form-control" value={this.state.password} onChange={ e => this.handleChange(e)} />
+          <div className="field">
+            <p className="control has-icons-left">
+              <input className="input" type="password" placeholder="Password"  name="password"
+                            value={this.state.password}
+                            onChange={(e) => this.handleInput(e)}></input>
+              <span className="icon is-small is-left">
+                <i className="fas fa-lock"></i>
+              </span>
+            </p>
           </div>
-          <input type="submit" value="Login" />
-        </form>
-        <p>Don't have account? 
+          <div className="field">
+            <p className="control">
+              <button className="button is-success" type="submit">
+                Login
+              </button>
+            </p>          </div>
+
+
+            <div className="field">
+            <p className="control">
+ Don't have account? 
             <Link to={"/signup"}> Signup</Link>
-        </p>
+        
+        </p>  
       </div>
+
+          </form>        
+          
+          <p></p>     
+      
+      
+     
+      </div>
+       
+            </>
     )
   }
 }

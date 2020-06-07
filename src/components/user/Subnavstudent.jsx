@@ -43,7 +43,7 @@ componentDidMount() {
 <ul>
 
 <li className="link" >
-<NavLink to={`/myprofile/${this.state.username}`} activeClassName="is-active">
+<NavLink to={`/myprofile/${this.state.username}`} activeStyle={{color:"red"}}>
 <span className="icon">
 <i className="fa fa-thumbs-up"></i>
 </span>
@@ -52,7 +52,7 @@ componentDidMount() {
 </li>
 
 <li className="link">
-<NavLink to='/login' onClick={() => this.logoutUser()} activeClassName="is-active">
+<NavLink to='/login' onClick={() => this.logoutUser()} activeStyle={{color:"red"}}>
 <span className="icon">
 <i className="fa fa-balance-scale"></i>
 </span>
