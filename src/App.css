@@ -1,6 +1,6 @@
 #root {
-
-
+  
+background-color: rgb(245, 245, 245);
 
 }
 
@@ -43,5 +43,69 @@ padding: 0px 8px 8px 8px;
 .subnav li a {
 
 color: white;
+
+}
+
+
+.stat-val {
+  font-size: 3em;
+  padding-top: 20px;
+  font-weight: bold;
+}
+
+.stat-key {
+  font-size: 1.4em;
+  font-weight: 200
+}
+
+.section.profile-heading .column.is-2-tablet.has-text-centered + .has-text-centered {
+  border-left: 1px dotted rgba(0, 0, 0, .2);
+  background-color: white !important;
+}
+
+.container.profile {
+  margin-top: 1%;
+  background-color: rgb(245, 245, 245);
+}
+
+.control.is-pulled-left span.select {
+  margin-right: 5px;
+  border-radius: 2px;
+}
+
+.modal-card .content h1 {
+  padding: 40px 10px 10px;
+  border-bottom: 1px solid #dadada
+}
+
+.container.profile .profile-options .tabs ul li.link a {
+  margin-bottom: 20px;
+  padding: 20px;
+
+}
+
+
+.video-container {
+
+display: flex;
+flex-wrap: wrap;
+
+
+}
+
+.video-container div.card-video {
+
+width: 300px;
+margin: 20px;
+background-color: white;
+
+
+}
+
+.student-profile-small img {
+
+width: 50px;
+height: 50px;
+border-radius: 180px;
 
 }

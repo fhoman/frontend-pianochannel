@@ -31,9 +31,9 @@ const URL = axios.create({
     untagVideo: (data) => {
       console.log(data)
       return URL.post('/untagvideo',data)
-    },
-    FetchVideosStudent: (user) => {
-      return URL.post('/profile/videos-student',user)
+    },    
+    mailNewUser: (email) => {
+      return URL.post('/mail-user',email)
     }
 
   }

@@ -10,9 +10,10 @@ export default class Subnavstudent extends Component {
     this.service = new AuthService();
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({...this.state, loggedInUser: nextProps["userInSession"]});
-  }
+  //componentDidUpdate(nextProps) {
+  //  console.log(nextProps)
+  //  this.setState({...this.state, loggedInUser: nextProps["userInSession"]});
+  //}
 
     logoutUser = () =>{
         console.log(this.props)
@@ -24,7 +25,10 @@ export default class Subnavstudent extends Component {
         })
       }
 
-
+componentDidMount() {
+ const {username,loggedInUser} = this.props.userInSession
+ this.setState({username,loggedInUser})
+}
 
     render() {
 
@@ -33,8 +37,8 @@ export default class Subnavstudent extends Component {
             <div className='subnav'>
             <ul>
            
-         <li>    <Link to='/profile'>Profile</Link></li>  
-         <li>    <Link to='/login' onClick={() => this.logoutUser()}>Logout</Link></li> 
+         <li>    <Link to={`/myprofile/${this.state.username}`}>Profile</Link></li>  
+            <li>    <Link to='/login' onClick={() => this.logoutUser()}>Logout</Link></li> 
  
           </ul> 
  

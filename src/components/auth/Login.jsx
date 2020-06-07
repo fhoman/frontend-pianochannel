@@ -41,7 +41,7 @@ export default class Login extends Component {
           </div>
           <div className="form-group">
           <label>Password:</label>
-          <input name="password"  className="form-control" value={this.state.password} onChange={ e => this.handleChange(e)} />
+          <input name="password"  type="password" className="form-control" value={this.state.password} onChange={ e => this.handleChange(e)} />
           </div>
           <input type="submit" value="Login" />
         </form>
