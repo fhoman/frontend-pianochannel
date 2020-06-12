@@ -7,14 +7,18 @@ const URL = axios.create({
 
   const UserService = {
    
-    FetchVideosStudent: (user) => {
-      return URL.post('/videos-student',user)
-    },
+    
     FetchProfileStudent: (user) => {
       return URL.post('/profile-student',user)
     },
     UpdateProfileStudent: (user) => {
       return URL.post('/update-profile-student',user)
+    },
+    handleFileUpload: (image) => {
+      console.log(image)
+      return URL.post('/profileimage', image)
+      
+        .then(response => response.data)
     }
 
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import AuthService from '../../services/auth-service'
-import {Redirect} from 'react-router-dom'
+import {Redirect,Link} from 'react-router-dom'
 export default class Signup extends Component {
 
     state = {
@@ -9,6 +9,19 @@ export default class Signup extends Component {
             service: new AuthService(),
             submitted: false
     }
+
+
+componentDidMount(){
+
+  var url_string = window.location.href
+  var url = new URL(url_string);
+  var mail = url.searchParams.get("mail");
+  console.log(mail);
+  this.setState({username:mail})
+
+}
+
+
 
      handleSubmit = (e) => {
         e.preventDefault();
@@ -25,6 +38,8 @@ export default class Signup extends Component {
     }
 
     render() {
+
+
 
       if(this.state.submitted) {
         return <Redirect to='/login' />
@@ -63,6 +78,15 @@ export default class Signup extends Component {
     </button>
   </p>
 </div>
+
+<div className="field">
+            <p className="control">
+ Already have an account? 
+            <Link to={"/signup"}> Login</Link>
+        
+        </p>  
+      </div>
+
 </form>
 
 

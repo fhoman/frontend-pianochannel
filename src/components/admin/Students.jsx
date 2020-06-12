@@ -7,7 +7,9 @@ export default class Students extends Component {
       super()
       this.state = {
           users: [],
-          email:''
+          email:'',
+          tempMail:'',
+          showMessage:false
       }      
   } 
 
@@ -15,24 +17,22 @@ export default class Students extends Component {
     AdminService.fetchStudents()
     .then(data => {     
         this.setState({ users:data.data })        
-        console.log(this.state)
+       
     }).catch(err => console.log(err))
        }
 
    handleChange = (event) => {  
-     console.log(event.target.value)
         const {name, value} = event.target;
         this.setState({[name]: value});
       }
 
   onSubmit = (e) => {
-    e.preventDefault();
-      AdminService.mailNewUser(this.state.email)
-    
-      this.setState({email:''})
-  
-    
-
+    e.preventDefault();   
+      AdminService.mailNewUser(this.state.email)    
+      this.setState({email:'',showMessage:true,tempMail:this.state.email}) 
+      setTimeout(()=> { 
+        this.setState({showMessage:false})
+       }, 2000);
   }
   
     render() {
@@ -48,11 +48,6 @@ export default class Students extends Component {
 
 <div className="column is-2-tablet is-4-mobile has-text-centered">
 <p className="stat-val">{this.state.totalVideos}</p>
-
-
-
-
-
 </div>
 <div className="column is-8">
 <div className="field has-addons">
@@ -65,10 +60,10 @@ export default class Students extends Component {
     </a>
   </div>
 </div>
-</div>
-</div>
-</div>
 
+{this.state.showMessage && <div className="notification is-success"> An invitation has been send to {this.state.tempMail}</div>}
+
+</div></div></div>
 
 <table className="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
       <thead>
@@ -84,7 +79,7 @@ export default class Students extends Component {
 
           {this.state.users.map((user,index) =>    
          
-         <tr key={user.id}>
+         <tr key={index}>
             <td><span className='student-profile-small'><img src={user.image} alt={user.name}></img></span></td>
           <td>{user.name}</td>
           <td>{user.surname}</td>

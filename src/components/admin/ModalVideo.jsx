@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import AdminService from '../../services/admin-service'
-import { Link } from 'react-router-dom';
-import '../../App.css';
+import {} from 'react-router-dom';
 
-
-export default class Video extends Component {
+export default class ModalVideo extends Component {
 
     constructor(){
         super()
@@ -40,7 +38,6 @@ AdminService.tagVideo(data)
 this.getNewData()      
 }   )
 .catch(err => console.log(err))
-
     }  
 
 untagUser = (username) => {
@@ -62,37 +59,26 @@ AdminService.untagVideo(data)
 return <div>Loading</div>
         }
 
-else{
-    const {title} = this.state.taggedVideo.snippet
-        return (
-            <div className='card-video'>
-<div className='card-content'>
-    <div className='content'>
-<h2 className='video-modal' >{title}</h2>
-<p></p>
 
-{this.state.taggedVideo.users.map((student,index) => {
-
-return <div key={index}><span key={index} className='student-profile-small'> <img alt={student.username}  src={student.image}></img></span><button className="button is-danger is-small ml-6" onClick={(e) => this.untagUser(student.username)}>
-<span >Untag student</span>
-<span className="icon is-small">
-  <i className="delete"></i>
-</span>
-</button> </div>
-
-})}
-<p></p>
-
-{this.state.students.map((student,index) => {
-
-return <div key={index}><span key={index} className='student-profile-small mr-6'> <img alt={student.username}  src={student.image}></img></span> <button className='button is-success is-small' onClick={(e) => this.tagUser(student.username)}>Tag user</button></div>
-
-})}
-<p></p>
-<Link to='/videos'>Back to videos</Link>
-</div></div>
-            </div>
+return (
+          <>
+          <div className="modal-background"></div>
+          <div className="modal-card">
+          <header className="modal-card-head">
+          <p className="modal-card-title">Edit Preferences</p>
+          <button onClick={this.props.handleClose()} className='delete'>close</button>
+          </header>
+          <section className="modal-card-body">
+       test
+          </section>
+          <footer className="modal-card-foot">
+          <a className="button is-primary modal-save" href='/save' onClick={(e) => this.props.handleSave(e)}>Save changes</a>
+          <button onClick={this.props.handleClose()}>close</button>
+          </footer>
+          </div>
+             
+            </>
         )
-    }
+    
 }
 }

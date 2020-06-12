@@ -16,20 +16,16 @@ const URL = axios.create({
     fetchStudents: () => {
       return URL.post('/students')
     },
-    fetchStudentsVideo: (videoID) => {
-      console.log(videoID)
+    fetchStudentsVideo: (videoID) => {    
       return URL.post('/students-video',videoID)
     },
-    addStudent: (user) => {
-      console.log(user)
+    addStudent: (user) => { 
       return URL.post('/add-student',user)
     },
-    tagVideo: (data) => {
-      console.log(data)
+    tagVideo: (data) => {    
       return URL.post('/tagvideo',data)
     },
-    untagVideo: (data) => {
-      console.log(data)
+    untagVideo: (data) => {    
       return URL.post('/untagvideo',data)
     },    
     mailNewUser: (email) => {

@@ -70,7 +70,7 @@ export default class Login extends Component {
 
             <div className="field">
             <p className="control">
- Don't have account? 
+            Don't have account? 
             <Link to={"/signup"}> Signup</Link>
         
         </p>  

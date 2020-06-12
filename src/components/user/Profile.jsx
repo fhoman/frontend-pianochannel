@@ -3,6 +3,7 @@ import UserService from '../../services/user-service'
 // import { Link } from 'react-router-dom';
 import "bulma/css/bulma.css"
 import {Modal} from '../user/Modal'
+import Moment from 'react-moment';
 
 export default class Profile extends Component {
 
@@ -30,17 +31,29 @@ state = {username:this.props.user,
 
             savePreferences = (e) => {
               e.preventDefault();
-
               this.setState({ show: false });
               UserService.UpdateProfileStudent(this.state)
-              console.log(this.state.bio)
+         
             };
 
             handleInput = (e) => {
               let {name, value} = e.target;
-              this.setState({[name]: value})
-              console.log(this.state.bio)
+              this.setState({[name]: value})           
           }
+
+          handleFileUpload = e => {
+            const uploadData = new FormData(); 
+            uploadData.append("image", e.target.files[0]);
+            uploadData.append("username", this.state.username);       
+            UserService.handleFileUpload(uploadData)
+            .then(response => {
+                console.log('response is: ', response);             
+                this.setState({ image: response });
+              })
+              .catch(err => {
+                console.log("Error while uploading the file: ", err);
+              });
+        }
 
 componentDidMount() {
 
@@ -58,8 +71,9 @@ loading:false})
 
 
     render() {
+     
       const YouTubeURL = 'https://www.youtube.com/embed/'
-        console.log(this.props)
+     
 
         return (
           <div className="container profile">
@@ -75,8 +89,8 @@ loading:false})
           <span className="title is-bold">{this.state.name} {this.state.surname}</span>
           <br></br>
           <Modal show={this.state.show} name={this.state.name} surname={this.state.surname} 
-          number={this.state.number} username={this.state.username} description={this.state.bio} handleSave={this.savePreferences} 
-          handleClose={this.hideModal} handleInput={this.handleInput}>        
+          number={this.state.number} image={this.state.image} username={this.state.username} description={this.state.bio} handleSave={this.savePreferences} 
+          handleClose={this.hideModal} handleInput={this.handleInput} handleFileUpload={this.handleFileUpload}>        
         </Modal>
         <button type="button" className='button is-primary is-outlined' onClick={this.showModal}>
           Edit preferences
@@ -101,36 +115,21 @@ loading:false})
 
 return (
 
-
-
 <div className="card-video" key={video.id}>
 <div className="card-image">
 <iframe allowtransparency="true" title={index} width="300" height="215" src={YouTubeURL+video.snippet.resourceId.videoId} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 </div>
 <div className="card-content">
 <div className="content">
-  <p>{video.snippet.publishedAt}</p>
+<p><Moment format="D MMM YYYY">{video.snippet.publishedAt}</Moment></p> 
   <p className="title is-5">{video.snippet.title}</p>
 <p>{video.snippet.description}</p>
 </div>
 </div>
-
 </div> 
-
 )
-
-
   })}
-
-
-
-
-
 </div>
-
-  
-
-
           </div>
         )
        }   }
