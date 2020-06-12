@@ -10,11 +10,13 @@ class AuthService {
   }
 
   signup = (username, password) => {
+    
     return this.service.post('/auth/signup', {username, password})
     .then(response => response.data)
   }
 
   login = (username, password) => {
+    console.log(process.env.REACT_APP_API_URL)
     return this.service.post('/auth/login', {username, password})
     .then(response => { 
       return response.data}

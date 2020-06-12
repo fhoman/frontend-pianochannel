@@ -12,7 +12,8 @@ export default class Video extends Component {
             students: [],
             taggedVideo:'',
             taggedStudent:'',
-            loading:true            
+            loading:true,
+            taggedStudentsArr:[]           
         }      
     }
 
@@ -31,17 +32,25 @@ componentDidMount() {
 this.getNewData()
 }
     
-tagUser = (username) => {     
+tagUser = (username) => {    
+
 const data = {username:username,
 videoID:this.state.taggedVideo._id}
+
 AdminService.tagVideo(data)
 .then(() => {
-    this.setState({taggedStudent:username})
+    this.setState({taggedStudent:username})        
+    // Create a new array based on current state:
+let taggedStudentsArr = [...this.state.taggedStudentsArr];
+// Add item to it
+taggedStudentsArr.push(this.state.taggedStudent);
 this.getNewData()      
+this.setState({taggedStudentsArr})
 }   )
 .catch(err => console.log(err))
-
     }  
+
+
 
 untagUser = (username) => {
     const data = {username:username,
@@ -49,9 +58,15 @@ untagUser = (username) => {
 AdminService.untagVideo(data)
 .then(() => {
     this.setState({taggedStudent:username})
+
     this.getNewData()  
 }   )
 .catch(err => console.log(err))
+}
+
+
+sendNotifications = () => {
+AdminService.sendNotifications({taggedStudentsArr:this.state.taggedStudentsArr,videoID:this.state.taggedVideo})
 }
 
     render() {
@@ -89,7 +104,7 @@ return <div key={index}><span key={index} className='student-profile-small mr-6'
 
 })}
 <p></p>
-<Link to='/videos'>Back to videos</Link>
+<Link to='/videos'   onClick={()=> this.sendNotifications()}>Back to videos</Link>
 </div></div>
             </div>
         )

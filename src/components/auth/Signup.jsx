@@ -82,8 +82,7 @@ componentDidMount(){
 <div className="field">
             <p className="control">
  Already have an account? 
-            <Link to={"/signup"}> Login</Link>
-        
+            <Link to={"/login"}> Login</Link>        
         </p>  
       </div>
 

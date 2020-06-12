@@ -6,8 +6,7 @@ const URL = axios.create({
   })
 
   const UserService = {
-   
-    
+       
     FetchProfileStudent: (user) => {
       return URL.post('/profile-student',user)
     },
@@ -15,12 +14,9 @@ const URL = axios.create({
       return URL.post('/update-profile-student',user)
     },
     handleFileUpload: (image) => {
-      console.log(image)
-      return URL.post('/profileimage', image)
-      
+      return URL.post('/profileimage', image)      
         .then(response => response.data)
     }
-
   }
 
 

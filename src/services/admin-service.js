@@ -19,9 +19,6 @@ const URL = axios.create({
     fetchStudentsVideo: (videoID) => {    
       return URL.post('/students-video',videoID)
     },
-    addStudent: (user) => { 
-      return URL.post('/add-student',user)
-    },
     tagVideo: (data) => {    
       return URL.post('/tagvideo',data)
     },
@@ -30,6 +27,10 @@ const URL = axios.create({
     },    
     mailNewUser: (email) => {
       return URL.post('/mail-user',{email:email})
+    },
+    sendNotifications: (data) => {
+      console.log(data)
+      return URL.post('/send-notification',data)
     }
 
   }
