@@ -16,41 +16,47 @@ state = {username:this.props.user,
         surname:'',
         bio:'',
         image:'',
+        number:'',
         show: false,
+        flagButton: true
         
             }
         
 
             showModal = () => {
-              this.setState({ show: true });
+              this.setState({ show: true,flagButton:false });
             };
           
             hideModal = () => {
-              this.setState({ show: false });
+              this.setState({ show: false,flagButton:true });
             };
 
             savePreferences = (e) => {
               e.preventDefault();
-              this.setState({ show: false });
+              this.setState({ show: false,flagButton:true });
               UserService.UpdateProfileStudent(this.state)
          
             };
 
-            handleInput = (e) => {
-              let {name, value} = e.target;
-              this.setState({[name]: value})           
-          }
+handleInput = (e) => {
+console.log(e.target)
+let {name, value} = e.target;
+if (e.target.type === 'checkbox') {
+value = e.target.checked
+}          
+this.setState({[name]: value})
+}
 
-          handleFileUpload = e => {
-            const uploadData = new FormData(); 
-            uploadData.append("image", e.target.files[0]);
-            uploadData.append("username", this.state.username);       
-            UserService.handleFileUpload(uploadData)
-            .then(response => {
-                console.log('response is: ', response);             
+handleFileUpload = e => {
+const uploadData = new FormData(); 
+uploadData.append("image", e.target.files[0]);
+uploadData.append("username", this.state.username);       
+UserService.handleFileUpload(uploadData)
+.then(response => {
+     
                 this.setState({ image: response });
               })
-              .catch(err => {
+  .catch(err => {
                 console.log("Error while uploading the file: ", err);
               });
         }
@@ -60,9 +66,9 @@ componentDidMount() {
 UserService.FetchProfileStudent({username:this.state.username})
 .then(response => {
 
-  const {name,surname,number,videos,bio,role,image} = response.data[0]
+  const {name,surname,number,videos,bio,role,image,emailnotifications} = response.data[0]
 
-this.setState({videos,totalVideos:videos.length,name,surname,number,bio,role,image,
+this.setState({videos,totalVideos:videos.length,name,surname,number,bio,role,image,emailnotifications,
 loading:false})         
           })
           
@@ -74,7 +80,6 @@ loading:false})
      
       const YouTubeURL = 'https://www.youtube.com/embed/'
      
-
         return (
           <div className="container profile">
           <div className="section profile-heading">
@@ -85,21 +90,16 @@ loading:false})
           </span>
           </div>
           <div className="column is-4-tablet is-10-mobile name">
-          <p>
+        
           <span className="title is-bold">{this.state.name} {this.state.surname}</span>
           <br></br>
-          <Modal show={this.state.show} name={this.state.name} surname={this.state.surname} 
-          number={this.state.number} image={this.state.image} username={this.state.username} description={this.state.bio} handleSave={this.savePreferences} 
+          <Modal user={this.state} handleSave={this.savePreferences} 
           handleClose={this.hideModal} handleInput={this.handleInput} handleFileUpload={this.handleFileUpload}>        
         </Modal>
-        <button type="button" className='button is-primary is-outlined' onClick={this.showModal}>
-          Edit preferences
-        </button>
+        {this.state.flagButton &&  <button type="button"  className='button is-primary is-outlined' onClick={this.showModal}>Edit preferences</button>}
           <br></br>
-          </p>
-          <p className="tagline">
-          {this.state.bio}
-          </p>
+        
+          <p className="tagline">{this.state.bio}</p>
           </div>
           <div className="column is-2-tablet is-4-mobile has-text-centered">
           <p className="stat-val">{this.state.totalVideos}</p>

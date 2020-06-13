@@ -2,7 +2,13 @@
 import React from 'react';
 
 
-const Modal = ({ handleClose,handleSave,handleInput,show,name,username,surname,number,bio,handleFileUpload,image }) => {
+const Modal = (props) => {
+
+
+const {username,name,surname,number,bio,image,show,emailnotifications} = props.user
+const {handleClose,handleFileUpload,handleInput,handleSave} = props
+
+
     const showHideClassName = show ? "display-block" : "display-none";
   
     return (
@@ -11,14 +17,15 @@ const Modal = ({ handleClose,handleSave,handleInput,show,name,username,surname,n
           <div className="modal-background"></div>
           <div className="modal-card">
           <header className="modal-card-head">
-          <p className="modal-card-title">Edit Preferences</p>
+          <p className="modal-card-title">Edit Profile</p>
           <button onClick={handleClose} className='delete'>close</button>
           </header>
           <section className="modal-card-body">
             <span className='student-profile-big'>
           <img alt={name} src={image}></img>
+          <input type="file"  onChange={(e => handleFileUpload(e))}/>     
           </span>          
-          <input type="file" onChange={(e => handleFileUpload(e))}/>         
+             
           <label className="label">Name</label>         
           <input className="input" onChange={handleInput} placeholder="Text input" name='name' type="text" value={name}></input>          
           <label className="label">Surname</label>        
@@ -31,9 +38,9 @@ const Modal = ({ handleClose,handleSave,handleInput,show,name,username,surname,n
           <label className="label">Phone Number</label>         
           <input className="input"  onChange={handleInput} placeholder="Text input"  name='number'  type="text"  value={number}></input>
           <label className="label">Send me notifications for every new video</label>         
-          <div class="field">
-  <input className="is-checkradio is-success is-circle" type="checkbox" name="email" ></input>
-  <label for="email"> E-mail</label>
+          <div className="field">
+  <input className="is-checkradio is-success is-circle" checked={emailnotifications} type="checkbox" name="emailnotifications" onChange={handleInput}></input>
+  <label htmlFor="email"> E-mail</label>
 </div>
 
 
@@ -42,7 +49,7 @@ const Modal = ({ handleClose,handleSave,handleInput,show,name,username,surname,n
           </section>
           <footer className="modal-card-foot">
           <a className="button is-primary modal-save" href='/save' onClick={(e) => handleSave(e)}>Save changes</a>
-          <button onClick={handleClose}>close</button>
+          <button onClick={handleClose} className='button is-danger'>close</button>
           </footer>
           </div>
 
