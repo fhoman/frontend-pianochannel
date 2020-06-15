@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header'
 import Subnavadmin from './components/admin/Subnavadmin'
 import Subnavstudent from './components/user/Subnavstudent'
@@ -9,7 +10,7 @@ import Students from './components/admin/Students'
 import Videos from './components/admin/Videos'
 import Video from './components/admin/Video'
 import Profile from './components/user/Profile'
-import { Route,Switch,Link, Redirect } from 'react-router-dom';
+import { Route,Switch,Link} from 'react-router-dom';
 import AuthService from '../src/services/auth-service'
 
 
@@ -68,7 +69,7 @@ if (this.state.role === 'ADMIN') {
 
   return (
     <div >
-      <Redirect to='/students/'></Redirect>
+      
         <Header></Header>
       <Subnavadmin userInSession={this.state.loggedInUser} setUser={this.setUser} ></Subnavadmin>
       <Switch>
@@ -81,22 +82,18 @@ if (this.state.role === 'ADMIN') {
   )
   }
 
-  else if (this.state.role === 'USER') {
-
-    
+  else if (this.state.role === 'USER') {    
 
     return (
       <div >
-        <Redirect to={`/myprofile/${this.state.username}`}></Redirect>
+        
       <Header></Header>
         <Subnavstudent userInSession={this.state}  setUser={this.setUser}></Subnavstudent>
         <Switch>
         
       <Route exact path="/myprofile/:id" >
-        <Profile user={this.state.username} setUser={this.setUser}></Profile>
-      
-      </Route>
-    
+        <Profile user={this.state.username} setUser={this.setUser}></Profile>      
+      </Route> 
  
       </Switch>
       </div>
@@ -108,11 +105,15 @@ if (this.state.role === 'ADMIN') {
   return (
     <div >
     <Header></Header>
+   
     <Switch>
     <Route exact path="/" ><h3>Home </h3><Link to='/login'>Login</Link><p></p><Link to='signup'>Signup</Link></Route>
     <Route path='/login' render={() => <Login setUser={this.setUser} />} />
     <Route path='/signup' component={Signup} />
+    
     </Switch> 
+
+ 
 </div>
         )
 

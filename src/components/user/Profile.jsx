@@ -21,22 +21,21 @@ state = {username:this.props.user,
         flagButton: true
         
             }
-        
-
-            showModal = () => {
-              this.setState({ show: true,flagButton:false });
-            };
+            
+            
+showModal = () => {
+this.setState({ show: true,flagButton:false });
+};
           
-            hideModal = () => {
-              this.setState({ show: false,flagButton:true });
-            };
+hideModal = () => {
+this.setState({ show: false,flagButton:true });
+};
 
-            savePreferences = (e) => {
-              e.preventDefault();
-              this.setState({ show: false,flagButton:true });
-              UserService.UpdateProfileStudent(this.state)
-         
-            };
+savePreferences = (e) => {
+e.preventDefault();
+this.setState({ show: false,flagButton:true });
+UserService.UpdateProfileStudent(this.state)
+};
 
 handleInput = (e) => {
 console.log(e.target)
@@ -66,15 +65,13 @@ componentDidMount() {
 UserService.FetchProfileStudent({username:this.state.username})
 .then(response => {
 
-  const {name,surname,number,videos,bio,role,image,emailnotifications} = response.data[0]
+  const {name,surname,number,videos,bio,role,image,emailnotifications,whatsappnotifications} = response.data[0]
 
-this.setState({videos,totalVideos:videos.length,name,surname,number,bio,role,image,emailnotifications,
+this.setState({videos,totalVideos:videos.length,name,surname,number,bio,role,image,emailnotifications,whatsappnotifications,
 loading:false})         
           })
           
           }
-
-
 
     render() {
      

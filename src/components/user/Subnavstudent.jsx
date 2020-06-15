@@ -32,16 +32,10 @@ componentDidMount() {
 
     render() {
 
-
         return (
-
-
-
-
 <div className="profile-options is-fullwidth">
 <div className="tabs is-fullwidth is-medium">
 <ul>
-
 <li className="link" >
 <NavLink to={`/myprofile/${this.state.username}`} activeStyle={{color:"red"}}>
 <span className="icon">
@@ -50,7 +44,6 @@ componentDidMount() {
 <span>Profile</span>
 </NavLink>
 </li>
-
 <li className="link">
 <NavLink to='/login' onClick={() => this.logoutUser()} activeStyle={{color:"red"}}>
 <span className="icon">
@@ -62,16 +55,6 @@ componentDidMount() {
 </ul>
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
 
         )
     }

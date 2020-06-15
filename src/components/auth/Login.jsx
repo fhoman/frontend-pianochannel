@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import AuthService from '../../services/auth-service'
-import { Link } from 'react-router-dom';
+import { Link,Redirect } from 'react-router-dom';
+import { FaEnvelope,FaLock,FaCheck } from "react-icons/fa";
 
 export default class Login extends Component {
 
@@ -8,6 +9,9 @@ export default class Login extends Component {
     state = {
         username: '',
         password: '',
+        usernameTemp:'',
+        role: '',
+
         service: new AuthService(),
         formSubmit: false
     }
@@ -18,8 +22,9 @@ export default class Login extends Component {
         const password = this.state.password;
         this.state.service.login(username, password)
         .then( response => {
-            this.setState({ username: "", password: "",formSubmit:true });
-            console.log(response)
+            this.setState({ username: "", password: "",role:response.role, 
+            usernameTemp:response.username,formSubmit:true });
+            console.log(this.state)
             this.props.setUser(response);          
         })
         .catch( error => console.log(error) )
@@ -32,57 +37,59 @@ export default class Login extends Component {
 
   render() {
 
+const URL = `/myprofile/${this.state.usernameTemp}`
+    if(this.state.formSubmit && this.state.role === 'USER') {
+      return <Redirect to={URL} />
+    }
+
+    else if (this.state.formSubmit && this.state.role === 'ADMIN') {
+      return <Redirect to={'/students/'} />
+
+    }
+
         return (
           <>
-          <div className='form-container'>
-
-          <form className="signup-form" onSubmit={(e) => this.handleSubmit(e)}>
-          <div className="field">
-            <p className="control has-icons-left has-icons-right">
-              <input className="input" type="email"  name="username"
-                            value={this.state.username}
-                            onChange={(e) => this.handleInput(e)} placeholder="Email"></input>
-              <span className="icon is-small is-left">
-                <i className="fas fa-envelope"></i>
-              </span>
-              <span className="icon is-small is-right">
-                <i className="fas fa-check"></i>
-              </span>
-            </p>
-          </div>
-          <div className="field">
-            <p className="control has-icons-left">
-              <input className="input" type="password" placeholder="Password"  name="password"
-                            value={this.state.password}
-                            onChange={(e) => this.handleInput(e)}></input>
-              <span className="icon is-small is-left">
-                <i className="fas fa-lock"></i>
-              </span>
-            </p>
-          </div>
-          <div className="field">
-            <p className="control">
-              <button className="button is-success" type="submit">
-                Login
-              </button>
-            </p>          </div>
-
-
-            <div className="field">
-            <p className="control">
-            Don't have account? 
-            <Link to={"/signup"}> Signup</Link>
-        
+         <div className="columns is-multiline">
+      <div className="column is-8 is-offset-2 register">
+      
+        <div className="columns is-centered">
+          <div className="column is-half">
+            <div className="notification is-light">
+             
+              <div className="field">
+                <label className="label">Name</label>
+                <div className="control has-icons-left has-icons-right">
+                  <input className="input" type="email" value={this.state.username} name='username' onChange={(e) => this.handleInput(e)} placeholder="Email"></input>
+                  <span className="icon is-small is-left">
+                  <FaEnvelope/>
+                  </span>
+                  <span class="icon is-small is-right">
+                  <FaCheck/>
+		    </span>
+                </div>
+              </div>
+              <div className="field">
+                <label className="label">Password:</label>
+                <p className="control has-icons-left">
+                  <input className="input" type="password" value={this.state.password} name='password'  onChange={(e) => this.handleInput(e)} placeholder="Password"></input>
+                  <span className="icon is-small is-left">
+                  <FaLock/>
+                  </span>
+                </p>
+              </div>
+              <button className="button is-info is-rounded mb-6" onClick={(e)=> this.handleSubmit(e)}>Login</button>
+              <p className="control mt-6" >
+ Don't have an account? 
+            <Link to={"/signup"}>Signup</Link>        
         </p>  
-      </div>
-
-          </form>        
+            </div>
+            
+          </div>
           
-          <p></p>     
-      
-      
-     
+        </div>
+        
       </div>
+    </div>
        
             </>
     )

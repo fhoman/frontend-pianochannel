@@ -15,17 +15,16 @@ font-size: 16px;
 
   background: black;
 display: flex;
+justify-content: left;
 
 }
 
 
 .header img {
 
-margin-top: 50px;
-margin-bottom: 50px;
-margin-left: 250px;
 width: 275px;
 height: auto;
+margin: 40px;
 
 }
 
@@ -209,4 +208,34 @@ font-size: 1.2em;
 .upload-button:hover {
 transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
 color: #999;
+}
+
+.modal-message {
+
+display: flex;
+flex-direction: column;
+align-content: space-between;
+
+}
+
+.modal-header-message {
+
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+margin-bottom: 20px;
+
+}
+.modal-body-message {
+
+  margin-bottom: 30px;
+
+}
+
+.modal-footer-message {
+
+  display: flex;
+  justify-content: space-between;
+
+  
 }

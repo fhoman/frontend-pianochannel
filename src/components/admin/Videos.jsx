@@ -63,16 +63,12 @@ console.log(username,videoID)
   .catch(err => console.log(err))
   }
 
-
     render() {
   if (this.state.loading) {
-
    return <p className='columns is-centered' >Loading videos</p>
-
   }
 
   if (this.state.filteredData.length === 0) {
-
 
     return (
     <>

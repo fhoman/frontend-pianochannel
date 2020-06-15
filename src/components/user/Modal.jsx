@@ -1,19 +1,18 @@
 
 import React from 'react';
-
+import { FaWhatsapp,FaEnvelope } from "react-icons/fa";
 
 const Modal = (props) => {
 
 
-const {username,name,surname,number,bio,image,show,emailnotifications} = props.user
+const {username,name,surname,number,bio,image,show,emailnotifications,whatsappnotifications} = props.user
 const {handleClose,handleFileUpload,handleInput,handleSave} = props
 
 
     const showHideClassName = show ? "display-block" : "display-none";
   
     return (
-      <div className={showHideClassName}>
-           
+      <div className={showHideClassName}>           
           <div className="modal-background"></div>
           <div className="modal-card">
           <header className="modal-card-head">
@@ -24,8 +23,7 @@ const {handleClose,handleFileUpload,handleInput,handleSave} = props
             <span className='student-profile-big'>
           <img alt={name} src={image}></img>
           <input type="file"  onChange={(e => handleFileUpload(e))}/>     
-          </span>          
-             
+          </span>                       
           <label className="label">Name</label>         
           <input className="input" onChange={handleInput} placeholder="Text input" name='name' type="text" value={name}></input>          
           <label className="label">Surname</label>        
@@ -39,22 +37,21 @@ const {handleClose,handleFileUpload,handleInput,handleSave} = props
           <input className="input"  onChange={handleInput} placeholder="Text input"  name='number'  type="text"  value={number}></input>
           <label className="label">Send me notifications for every new video</label>         
           <div className="field">
-  <input className="is-checkradio is-success is-circle" checked={emailnotifications} type="checkbox" name="emailnotifications" onChange={handleInput}></input>
-  <label htmlFor="email"> E-mail</label>
+  <input className="is-checkradio is-success is-circle"  style={{marginRight:10}}  checked={emailnotifications} type="checkbox" name="emailnotifications" onChange={handleInput}></input>
+  <label htmlFor="email" style={{marginRight:20}}><span className="icon is-small is-left">
+                  <FaEnvelope/>
+                  </span> E-mail</label>
+  <input className="is-checkradio is-success is-circle" style={{marginRight:10}} checked={whatsappnotifications} type="checkbox" name="whatsappnotifications" onChange={handleInput}></input>
+  <label htmlFor="whastapp" ><span className="icon is-small is-left">
+                  <FaWhatsapp/>
+                  </span> Whatsapp</label>
 </div>
-
-
-
-
           </section>
           <footer className="modal-card-foot">
           <a className="button is-primary modal-save" href='/save' onClick={(e) => handleSave(e)}>Save changes</a>
           <button onClick={handleClose} className='button is-danger'>close</button>
           </footer>
           </div>
-
-
-
       </div>
     );
   };
