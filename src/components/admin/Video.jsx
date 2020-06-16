@@ -4,15 +4,19 @@ import '../../App.css';
 import Modal from 'react-modal'
 
 
-
-
 const customStyles = {
     content : {
       top                   : '20%',
-      left                  : '20%',
-      right                  : '20%',
-      bottom                 : '40%'
-     
+      left                  : '30%',
+      right                  : '30%',
+      bottom                 : '20%',
+      padding               :  20,
+      margin                : 0  
+    },
+    modal : {
+
+        padding: 0,
+        margin: 0
     }
   };
 
@@ -115,11 +119,9 @@ else{
 
 {this.state.taggedVideo.users.map((student,index) => {
 
-return <div key={index}><span key={index} className='student-profile-small'> <img alt={student.username}  src={student.image}></img></span><button className="button is-danger is-small ml-6" onClick={(e) => this.untagUser(student)}>
+return <div key={index}><span key={index} className='student-profile-small'> <img alt={student.username}  src={student.image}></img></span><button className="button is-danger is-small" onClick={(e) => this.untagUser(student)}>
 <span >Untag student</span>
-<span className="icon is-small">
-  <i className="delete"></i>
-</span>
+
 </button> </div>
 
 })}
@@ -134,25 +136,17 @@ return <div key={index}><span key={index} className='student-profile-small mr-6'
 
 <Modal isOpen={this.state.isOpen} onRequestClose={()=> this.hideModal()}  style={customStyles}>
 <div className='modal-message'>
-
-
-<div className='modal-header-message' > <p className="modal-card-title">Send notifications</p>
+<div className='modal-header-message'><p className="modal-card-title">Send notifications</p>
 <button onClick={() => this.hideModal()} className='delete'>close</button>
-          </div> 
-          <div className='modal-body-message'>
+</div> 
+<div className='modal-body-message'>
 <ul>
 {this.state.taggedStudentsArr.map(student => {
 console.log(student)
-return <li><span key={student.username} className='student-profile-small mr-6'> <img alt={student.username}  src={student.image}></img></span> {student.name}</li>
-
-
+return <li><span key={student.username} className='student-profile-small'> <img alt={student.username}  src={student.image}></img></span> {student.name}</li>
 
 })}
 </ul>
-
-
-
-
 <p></p>
 </div>
 
@@ -166,7 +160,7 @@ return <li><span key={student.username} className='student-profile-small mr-6'> 
 
 </div>
 </Modal>
-<button onClick={()=> this.showModal()}>Back to videos</button>
+<button onClick={()=> this.showModal()} className='button is-info'>Back to videos</button>
 
 </div></div>
             </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import AuthService from '../../services/auth-service'
-import {Redirect,Link} from 'react-router-dom'
+import {Link,Redirect} from 'react-router-dom'
 import { FaEnvelope,FaLock,FaCheck } from "react-icons/fa";
 
 export default class Signup extends Component {
@@ -15,23 +15,32 @@ export default class Signup extends Component {
 
 componentDidMount(){
 
-  var url_string = window.location.href
-  var url = new URL(url_string);
-  var mail = url.searchParams.get("mail");
+  const url_string = window.location.href
+  const url = new URL(url_string);
+
+  const mail = url.searchParams.get("mail");
+  if (mail) {
   console.log(mail);
   this.setState({username:mail})
-
+  }
+  return null
 }
 
 
 
-     handleSubmit = (e) => {
-        e.preventDefault();
-               this.state.service.signup(this.state.username, this.state.password)
-        .then(user => {
-          console.log(user)
-          this.setState({submitted: true,username:'',password:''})
-        })
+handleSubmit = (e) => {
+e.preventDefault();
+this.state.service.signup(this.state.username, this.state.password)
+.then(user => {
+console.log(user.data.user)
+const {username,password} = user.data.user
+if (username && password) {
+this.setState({submitted: true,username:'',password:''})
+}
+ })
+          
+.catch(err => console.log(err))
+
     }
 
     handleInput = (e) => {
@@ -42,10 +51,13 @@ componentDidMount(){
     render() {
 
 
+      if (this.state.submitted) {
 
-      if(this.state.submitted) {
-        return <Redirect to='/login' />
+   return <Redirect to='/login'></Redirect>
+
       }
+
+else {
         return (
           <>
         
@@ -107,5 +119,6 @@ componentDidMount(){
 
         </>
         );
+}
     }
 }

@@ -17,23 +17,24 @@ state = {username:this.props.user,
         bio:'',
         image:'',
         number:'',
-        show: false,
+        showModal: false,
         flagButton: true
         
             }
             
             
 showModal = () => {
-this.setState({ show: true,flagButton:false });
+this.setState({ showModal: true,flagButton:false });
 };
           
 hideModal = () => {
-this.setState({ show: false,flagButton:true });
+this.setState({ showModal: false,flagButton:true });
 };
+
 
 savePreferences = (e) => {
 e.preventDefault();
-this.setState({ show: false,flagButton:true });
+this.setState({ showModal: false,flagButton:true });
 UserService.UpdateProfileStudent(this.state)
 };
 
@@ -82,16 +83,16 @@ loading:false})
           <div className="section profile-heading">
           <div className="columns is-mobile is-multiline">
           <div className="column is-2">
-          <span className="student-profile-big">
-          <img alt={this.state.name} src={this.state.image}></img>
-          </span>
+          <div className="student-profile-editable">
+          <img alt={this.state.name} src={this.state.image} className='main-profile-img'></img>
+          </div>
           </div>
           <div className="column is-4-tablet is-10-mobile name">
         
           <span className="title is-bold">{this.state.name} {this.state.surname}</span>
           <br></br>
           <Modal user={this.state} handleSave={this.savePreferences} 
-          handleClose={this.hideModal} handleInput={this.handleInput} handleFileUpload={this.handleFileUpload}>        
+          handleClose={this.hideModal} InputShow={this.InputShow} handleInput={this.handleInput} handleFileUpload={this.handleFileUpload}>        
         </Modal>
         {this.state.flagButton &&  <button type="button"  className='button is-primary is-outlined' onClick={this.showModal}>Edit preferences</button>}
           <br></br>

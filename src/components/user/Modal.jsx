@@ -1,15 +1,18 @@
 
 import React from 'react';
-import { FaWhatsapp,FaEnvelope } from "react-icons/fa";
+import { FaWhatsapp,FaEnvelope,FaUserEdit } from "react-icons/fa";
 
 const Modal = (props) => {
 
+  
 
-const {username,name,surname,number,bio,image,show,emailnotifications,whatsappnotifications} = props.user
+const {username,name,surname,number,bio,image,showModal,emailnotifications,whatsappnotifications} = props.user
 const {handleClose,handleFileUpload,handleInput,handleSave} = props
 
-
-    const showHideClassName = show ? "display-block" : "display-none";
+    
+  
+    const showHideClassName = showModal ? "display-block" : "display-none";
+  
   
     return (
       <div className={showHideClassName}>           
@@ -20,10 +23,19 @@ const {handleClose,handleFileUpload,handleInput,handleSave} = props
           <button onClick={handleClose} className='delete'>close</button>
           </header>
           <section className="modal-card-body">
-            <span className='student-profile-big'>
-          <img alt={name} src={image}></img>
-          <input type="file"  onChange={(e => handleFileUpload(e))}/>     
-          </span>                       
+           
+          <label for="upload">
+          <div className='student-profile-editable'>
+        
+          <img src={image} alt={name} className="main-profile-img" />
+      <input type="file" style={{display:'none'}}id="upload" onChange={(e => handleFileUpload(e))}/>     
+
+<FaUserEdit/>
+</div>
+</label>
+
+          
+
           <label className="label">Name</label>         
           <input className="input" onChange={handleInput} placeholder="Text input" name='name' type="text" value={name}></input>          
           <label className="label">Surname</label>        

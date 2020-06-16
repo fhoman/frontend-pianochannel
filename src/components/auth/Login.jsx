@@ -63,7 +63,7 @@ const URL = `/myprofile/${this.state.usernameTemp}`
                   <span className="icon is-small is-left">
                   <FaEnvelope/>
                   </span>
-                  <span class="icon is-small is-right">
+                  <span className="icon is-small is-right">
                   <FaCheck/>
 		    </span>
                 </div>
