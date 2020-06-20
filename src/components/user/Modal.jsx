@@ -24,7 +24,7 @@ const {handleClose,handleFileUpload,handleInput,handleSave} = props
           </header>
           <section className="modal-card-body">
            
-          <label for="upload">
+          <label htmlFor="upload">
           <div className='student-profile-editable'>
         
           <img src={image} alt={name} className="main-profile-img" />
@@ -49,11 +49,11 @@ const {handleClose,handleFileUpload,handleInput,handleSave} = props
           <input className="input"  onChange={handleInput} placeholder="Text input"  name='number'  type="text"  value={number}></input>
           <label className="label">Send me notifications for every new video</label>         
           <div className="field">
-  <input className="is-checkradio is-success is-circle"  style={{marginRight:10}}  checked={emailnotifications} type="checkbox" name="emailnotifications" onChange={handleInput}></input>
+  <input className="is-checkradio is-success is-circle"  style={{marginRight:10}} value={emailnotifications}  checked={emailnotifications} type="checkbox" name="emailnotifications" onChange={handleInput}></input>
   <label htmlFor="email" style={{marginRight:20}}><span className="icon is-small is-left">
                   <FaEnvelope/>
                   </span> E-mail</label>
-  <input className="is-checkradio is-success is-circle" style={{marginRight:10}} checked={whatsappnotifications} type="checkbox" name="whatsappnotifications" onChange={handleInput}></input>
+  <input className="is-checkradio is-success is-circle" style={{marginRight:10}} value={whatsappnotifications}  checked={whatsappnotifications} type="checkbox" name="whatsappnotifications" onChange={handleInput}></input>
   <label htmlFor="whastapp" ><span className="icon is-small is-left">
                   <FaWhatsapp/>
                   </span> Whatsapp</label>
