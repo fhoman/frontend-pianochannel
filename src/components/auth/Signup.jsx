@@ -28,20 +28,26 @@ componentDidMount(){
 
 
 
-handleSubmit = (e) => {
-e.preventDefault();
-this.state.service.signup(this.state.username, this.state.password)
-.then(user => {
-console.log(user.data.user)
-const {username,password} = user.data.user
-if (username && password) {
-this.setState({submitted: true,username:'',password:''})
-}
- })
-          
-.catch(err => console.log(err))
 
-    }
+
+handleSubmit = (e) => {
+  e.preventDefault();
+  if (this.state.username === '' || this.state.password === '') {
+    const message = 'Please fill in a username and a password'
+    this.setState({validationmessage:message})  
+  return 
+  }
+  
+  this.state.service.signup(this.state.username, this.state.password)
+  .then(user => {  
+  const {username,password} = user.data.user
+  if (username && password) {
+  this.setState({submitted: true,username:'',password:''})
+  }})          
+  .catch(err => console.log(err))
+  const message = 'This username already exists'
+  this.setState({validationmessage:message})
+      }
 
     handleInput = (e) => {
         let {name, value} = e.target;

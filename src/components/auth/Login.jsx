@@ -17,20 +17,32 @@ export default class Login extends Component {
     }
 
     handleSubmit = (event) => {
-        event.preventDefault();
-        const username = this.state.username;
-        const password = this.state.password;
-        this.state.service.login(username, password)
-        .then( response => {
-
-          console.log(response)
-            this.setState({ username: "", password: "",role:response.role, 
-            usernameTemp:response.username,formSubmit:true });
-            console.log(this.state)
-            this.props.setUser(response);          
-        })
-        .catch( error => console.log(error) )
+      event.preventDefault();
+      const username = this.state.username;
+      const password = this.state.password;
+      if (username === '' || password === '') {
+       let message = 'Please fill in a username and password';
+      this.setState({validationmessage:message})
+      return
       }
+
+      this.state.service.login(username, password)
+      .then( response => {
+          this.setState({ username: "", password: "",role:response.role, 
+          usernameTemp:response.username,formSubmit:true });
+          this.props.setUser(response);          
+      })
+      .catch( error => { 
+        console.log(error) 
+      let message = 'your username or password are not valid'
+         
+      this.setState({validationmessage:message})
+
+      }
+        
+        )
+    }
+  
     
       handleInput = (event) => {  
         const {name, value} = event.target;
