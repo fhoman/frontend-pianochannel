@@ -22,6 +22,8 @@ export default class Login extends Component {
         const password = this.state.password;
         this.state.service.login(username, password)
         .then( response => {
+
+          console.log(response)
             this.setState({ username: "", password: "",role:response.role, 
             usernameTemp:response.username,formSubmit:true });
             console.log(this.state)
