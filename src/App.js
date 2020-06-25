@@ -10,7 +10,7 @@ import Students from './components/admin/Students'
 import Videos from './components/admin/Videos'
 import Video from './components/admin/Video'
 import Profile from './components/user/Profile'
-import { Route,Switch, Redirect} from 'react-router-dom';
+import { Route,Switch} from 'react-router-dom';
 import AuthService from '../src/services/auth-service'
 
 

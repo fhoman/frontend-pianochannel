@@ -129,7 +129,7 @@ return <div key={index}><span key={index} className='student-profile-small'> <im
 
 {this.state.students.map((student,index) => {
 
-return <div key={index}><span key={index} className='student-profile-small mr-6'> <img alt={student.username}  src={student.image}></img></span> <button className='button is-success is-small' onClick={(e) => this.tagUser(student)}>Tag user</button></div>
+return <div key={index}><span key={index} className='student-profile-small mr-6'> <img alt={student.username}  src={student.image}></img></span> <button className='button is-success is-small' onClick={(e) => this.tagUser(student)}>Tag student</button></div>
 
 })}
 <p></p>
