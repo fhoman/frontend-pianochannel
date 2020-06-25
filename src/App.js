@@ -6,7 +6,6 @@ import Home from './components/Home'
 import Subnavadmin from './components/admin/Subnavadmin'
 import Subnavstudent from './components/user/Subnavstudent'
 import Login from './components/auth/Login'
-import Signup from './components/auth/Signup'
 import Students from './components/admin/Students'
 import Videos from './components/admin/Videos'
 import Video from './components/admin/Video'
@@ -103,7 +102,7 @@ if (this.state.role === 'ADMIN') {
     <Switch>
     <Route exact path="/" component={Home}></Route>
     <Route exact path='/login' render={() => <Login setUser={this.setUser} />} />
-    <Route exact path='/signup' component={Signup} />    
+  
     </Switch> 
    
 </div>

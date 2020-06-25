@@ -95,7 +95,7 @@ const URL = `/myprofile/${this.state.usernameTemp}`
                <button className="button is-info is-rounded mb-6" onClick={(e)=> this.handleSubmit(e)}>Login</button>
                <p className="control mt-6" >
   Don't have an account? 
-             <Link to={"/signup"}>Signup</Link>        
+             <Link to={"/"}>Signup</Link>        
          </p>  
              </div>
              

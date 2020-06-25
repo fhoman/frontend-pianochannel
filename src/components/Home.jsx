@@ -13,6 +13,16 @@ export default class Home extends Component {
     }
 
 
+    componentDidMount(){
+        const url_string = window.location.href
+        const url = new URL(url_string);
+        const mail = url.searchParams.get("mail");
+        if (mail) {
+        console.log(mail);
+        this.setState({username:mail})
+        }
+        return null
+      }
 
 handleSubmit = (e) => {
   e.preventDefault();
