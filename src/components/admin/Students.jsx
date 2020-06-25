@@ -1,5 +1,26 @@
 import React, {Component} from 'react';
 import AdminService from '../../services/admin-service'
+import { FaRegTrashAlt } from "react-icons/fa";
+import { IconContext } from "react-icons";
+import Modal from 'react-modal'
+
+
+const customStyles = {
+  content : {
+    top                   : '20%',
+    left                  : '30%',
+    right                  : '30%',
+    bottom                 : '20%',
+    padding               :  20,
+    margin                : 0  
+  },
+  modal : {
+
+      padding: 0,
+      margin: 0
+  }
+};
+
 
 export default class Students extends Component {
 
@@ -9,7 +30,9 @@ export default class Students extends Component {
           users: [],
           email:'',
           tempMail:'',
-          showMessage:false
+          showMessage:false,
+          deletedUserID:'',
+          isOpen:false         
       }      
   } 
 
@@ -34,7 +57,29 @@ export default class Students extends Component {
         this.setState({showMessage:false})
        }, 2000);
   }
-  
+
+  deleteUser = (userID) => {
+    this.setState({isOpen:false})
+    AdminService.deleteUser(userID)
+    .then(students => {
+      console.log(students)
+      this.setState({users:students.data})
+    }
+      )
+      }
+
+  showModal = () => {
+       
+        this.setState({isOpen:true})
+       
+        }
+        
+hideModal = () => {
+
+        this.setState({isOpen:false})
+        
+        }
+
     render() {
   
   
@@ -73,6 +118,7 @@ export default class Students extends Component {
           <th>Surname</th>
           <th>Email</th>
           <th>Telephone</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -85,6 +131,32 @@ export default class Students extends Component {
           <td>{user.surname}</td>
           <td>{user.username}</td>
           <td>{user.number}</td>
+          
+
+          <Modal isOpen={this.state.isOpen} onRequestClose={()=> this.hideModal()}  style={customStyles}>
+<div className='modal-message'>
+<div className='modal-header-message'><p className="modal-card-title">Delete user</p>
+<button onClick={() => this.hideModal()} className='delete'>close</button>
+</div> 
+<div className='modal-body-message'>
+
+<p></p>
+</div>
+<p>
+Are you sure you want to delete {user.username}?</p><p></p><br></br>
+<div className='modal-footer-message' >
+  
+<button className='button is-info' onClick={(e) => this.deleteUser(user._id) }>Delete user</button>
+
+<button className='button is-danger is-small' onClick={() => this.hideModal()}>Close modal</button>
+</div>
+
+
+</div>
+</Modal>
+
+                    
+          <td onClick={()=> this.showModal()}><IconContext.Provider  value={{className: "delete-icon" }}>  <FaRegTrashAlt /></IconContext.Provider></td>
         </tr>
 
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import AuthService from '../../services/auth-service'
+import AuthService from '../services/auth-service'
 import {Link} from 'react-router-dom'
 import { FaEnvelope,FaLock,FaCheck } from "react-icons/fa";
 
-export default class Signup extends Component {
+export default class Home extends Component {
 
     state = {
             username: '',
@@ -13,16 +13,6 @@ export default class Signup extends Component {
     }
 
 
-componentDidMount(){
-  const url_string = window.location.href
-  const url = new URL(url_string);
-  const mail = url.searchParams.get("mail");
-  if (mail) {
-  console.log(mail);
-  this.setState({username:mail})
-  }
-  return null
-}
 
 handleSubmit = (e) => {
   e.preventDefault();

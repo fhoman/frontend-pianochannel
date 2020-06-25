@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header'
+import Home from './components/Home'
 import Subnavadmin from './components/admin/Subnavadmin'
 import Subnavstudent from './components/user/Subnavstudent'
 import Login from './components/auth/Login'
@@ -10,7 +11,7 @@ import Students from './components/admin/Students'
 import Videos from './components/admin/Videos'
 import Video from './components/admin/Video'
 import Profile from './components/user/Profile'
-import { Route,Switch,Link} from 'react-router-dom';
+import { Route,Switch} from 'react-router-dom';
 import AuthService from '../src/services/auth-service'
 
 
@@ -56,27 +57,20 @@ setUser = (user) => {
 }
 
   render() {
-    this.checkAuthenticated()
-    
-
+    this.checkAuthenticated()    
     if(this.state.loading) {
       return <p>loading</p>
     }
 
-
-
 if (this.state.role === 'ADMIN') {
-
   return (
-    <div >
-      
+    <div >      
         <Header></Header>
       <Subnavadmin userInSession={this.state.loggedInUser} setUser={this.setUser} ></Subnavadmin>
       <Switch>
     <Route path="/students" component={Students}></Route>
     <Route exact path="/videos" component={Videos} ></Route>
-    <Route exact path="/video/:id" component={Video} ></Route>
- 
+    <Route exact path="/video/:id" component={Video} ></Route> 
     </Switch>
     </div>
   )
@@ -107,13 +101,11 @@ if (this.state.role === 'ADMIN') {
     <Header></Header>
    
     <Switch>
-    <Route exact path="/" ><h3>Home </h3><Link to='/login'>Login</Link><p></p><Link to='signup'>Signup</Link></Route>
-    <Route path='/login' render={() => <Login setUser={this.setUser} />} />
-    <Route path='/signup' component={Signup} />
-    
+    <Route exact path="/" component={Home}></Route>
+    <Route exact path='/login' render={() => <Login setUser={this.setUser} />} />
+    <Route exact path='/signup' component={Signup} />    
     </Switch> 
-
- 
+   
 </div>
         )
 

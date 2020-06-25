@@ -142,7 +142,6 @@ return <div key={index}><span key={index} className='student-profile-small mr-6'
 <div className='modal-body-message'>
 <ul>
 {this.state.taggedStudentsArr.map(student => {
-console.log(student)
 return <li><span key={student.username} className='student-profile-small'> <img alt={student.username}  src={student.image}></img></span> {student.name}</li>
 
 })}
@@ -154,7 +153,7 @@ return <li><span key={student.username} className='student-profile-small'> <img 
 <div className='modal-footer-message' >
 <button className='button is-info' onClick={()=> this.sendNotifications()}>Send notifications</button>
 
-<button className='button is-danger is-small' onClick={() => this.hideModal()}>Close modal</button>
+<button className='button is-danger is-small' onClick={() => this.hideModal()}>Close</button>
 </div>
 
 

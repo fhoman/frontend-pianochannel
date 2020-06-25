@@ -308,3 +308,22 @@ div.student-profile-editable svg {
   box-shadow: 0 0 8px 3px #B8B8B8;
 
 }
+
+.table.is-fullwidth {
+
+width: 80% !important;
+
+}
+
+.delete-icon {
+
+color:red;
+cursor: pointer;
+
+}
+
+.delete-icon:hover {
+
+color:black;
+
+}

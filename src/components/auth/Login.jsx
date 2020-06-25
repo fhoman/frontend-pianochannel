@@ -45,6 +45,7 @@ export default class Login extends Component {
   
     
       handleInput = (event) => {  
+        this.setState({validationmessage:''})
         const {name, value} = event.target;
         this.setState({[name]: value});
       }

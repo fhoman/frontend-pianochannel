@@ -31,6 +31,10 @@ const URL = axios.create({
     sendNotifications: (data) => {
       console.log(data)
       return URL.post('/send-notification',data)
+    },
+    deleteUser: (userID) => {
+      console.log(userID)
+      return URL.post('/delete-user',{userID:userID})
     }
 
   }
