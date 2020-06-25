@@ -9,12 +9,6 @@ export default class Subnavstudent extends Component {
     this.state = { loggedInUser: null,username:null,role:null };
     this.service = new AuthService();
   }
-
-  //componentDidUpdate(nextProps) {
-  //  console.log(nextProps)
-  //  this.setState({...this.state, loggedInUser: nextProps["userInSession"]});
-  //}
-
     logoutUser = () =>{
         console.log(this.props)
         this.service.logOut()
@@ -27,16 +21,14 @@ export default class Subnavstudent extends Component {
 
 componentDidMount() {
  const {username,loggedInUser} = this.props.userInSession
- this.setState({username,loggedInUser})
-}
+ this.setState({username,loggedInUser})}
 
     render() {
 
         return (
 <div className="profile-options is-fullwidth">
 <div className="tabs is-fullwidth is-medium">
-<ul>
-<li className="link" >
+<ul><li className="link" >
 <NavLink to={`/myprofile/${this.state.username}`} activeStyle={{color:"red"}}>
 <span className="icon">
 <i className="fa fa-thumbs-up"></i>

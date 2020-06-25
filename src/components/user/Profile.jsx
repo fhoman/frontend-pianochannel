@@ -77,6 +77,13 @@ loading:false})
     render() {
      
       const YouTubeURL = 'https://www.youtube.com/embed/'
+
+if (this.state.loading) {
+
+return <p> Videos are loading </p>
+
+}
+
      
         return (
           <div className="container profile">

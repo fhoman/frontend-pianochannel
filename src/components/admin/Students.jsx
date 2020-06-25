@@ -37,6 +37,9 @@ export default class Students extends Component {
   } 
 
   componentDidMount() {
+
+console.log(this.props)
+
     AdminService.fetchStudents()
     .then(data => {     
         this.setState({ users:data.data })        

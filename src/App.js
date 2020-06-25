@@ -10,7 +10,7 @@ import Students from './components/admin/Students'
 import Videos from './components/admin/Videos'
 import Video from './components/admin/Video'
 import Profile from './components/user/Profile'
-import { Route,Switch} from 'react-router-dom';
+import { Route,Switch, Redirect} from 'react-router-dom';
 import AuthService from '../src/services/auth-service'
 
 
@@ -50,8 +50,7 @@ checkAuthenticated = () => {
   }
 }
  
-setUser = (user) => {
-  console.log(user)
+setUser = (user) => { 
   this.setState({username:user.username,role:user.role})
 }
 
@@ -64,13 +63,13 @@ setUser = (user) => {
 if (this.state.role === 'ADMIN') {
   return (
     <div >      
-        <Header></Header>
+      <Header></Header>
       <Subnavadmin userInSession={this.state.loggedInUser} setUser={this.setUser} ></Subnavadmin>
-      <Switch>
+  <Switch>
     <Route path="/students" component={Students}></Route>
     <Route exact path="/videos" component={Videos} ></Route>
     <Route exact path="/video/:id" component={Video} ></Route> 
-    </Switch>
+  </Switch>
     </div>
   )
   }
@@ -78,17 +77,16 @@ if (this.state.role === 'ADMIN') {
   else if (this.state.role === 'USER') {    
 
     return (
-      <div >
-        
+      <div>        
       <Header></Header>
         <Subnavstudent userInSession={this.state}  setUser={this.setUser}></Subnavstudent>
-        <Switch>
-        
+        <Switch>        
       <Route exact path="/myprofile/:id" >
         <Profile user={this.state.username} setUser={this.setUser}></Profile>      
-      </Route> 
- 
+      </Route>  
+     
       </Switch>
+     
       </div>
     )
 

@@ -40,9 +40,11 @@ handleSubmit = (e) => {
   this.setState({submitted: true,username:'',password:'',validationmessage:''})
   this.props.history.push('/login')
   }})          
-  .catch(err => console.log(err))
+  .catch(err => {
+    console.log(err) 
   const message = 'This username already exists'
   this.setState({validationmessage:message})
+  })
       }
 
     handleInput = (e) => {
