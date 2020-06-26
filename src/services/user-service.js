@@ -11,6 +11,7 @@ const URL = axios.create({
       return URL.post('/profile-student',user)
     },
     UpdateProfileStudent: (user) => {
+      console.log(user.id)
       return URL.post('/update-profile-student',user)
     },
     handleFileUpload: (image) => {

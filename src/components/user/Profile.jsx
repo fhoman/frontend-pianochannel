@@ -7,7 +7,8 @@ import Moment from 'react-moment';
 
 export default class Profile extends Component {
 
-state = {username:this.props.user,
+state = {id:'',
+         username:this.props.user,
          loading:true,
          role:'',
          videos:[],
@@ -35,6 +36,7 @@ this.setState({ showModal: false,flagButton:true });
 savePreferences = (e) => {
 e.preventDefault();
 this.setState({ showModal: false,flagButton:true });
+console.log(this.state)
 UserService.UpdateProfileStudent(this.state)
 };
 
@@ -66,9 +68,9 @@ componentDidMount() {
 UserService.FetchProfileStudent({username:this.state.username})
 .then(response => {
 
-  const {name,surname,number,videos,bio,role,image,emailnotifications,whatsappnotifications} = response.data[0]
+  const {_id,username,name,surname,number,videos,bio,role,image,emailnotifications,whatsappnotifications} = response.data[0]
 
-this.setState({videos,totalVideos:videos.length,name,surname,number,bio,role,image,emailnotifications,whatsappnotifications,
+this.setState({id:_id,videos,totalVideos:videos.length,username,name,surname,number,bio,role,image,emailnotifications,whatsappnotifications,
 loading:false})         
           })
           
